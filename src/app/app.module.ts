@@ -4,17 +4,24 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
 
-import { AppComponent } from './app.component'
+import { AppComponent } from './app.component';
+import { AboutComponent } from './about/about.component';
+import { HomeComponent } from './home/home.component';
+import { HeaderComponent } from './header/header.component'
+import { ROUTES } from './app.routes';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AboutComponent,
+    HomeComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
-    RouterModule
+    RouterModule.forRoot(ROUTES)
   ],
   providers: [],
   bootstrap: [AppComponent]

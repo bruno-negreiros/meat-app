@@ -3,5 +3,5 @@ export interface MenuItem {
     imagePath: string;
     name: string;
     description: string;
-    price: string;
+    price: number;
 }

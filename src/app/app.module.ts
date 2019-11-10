@@ -4,9 +4,7 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-
 import { AppComponent } from './app.component';
-import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component'
 import { ROUTES } from './app.routes';
@@ -32,7 +30,6 @@ import { RatingComponent } from './shared/rating/rating.component';
 @NgModule({
   declarations: [
     AppComponent,
-    AboutComponent,
     HomeComponent,
     HeaderComponent,
     RestaurantsComponent,

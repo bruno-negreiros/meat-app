@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { LoginService } from './login.service';
 
 @Component({
   selector: 'mt-login',
@@ -11,7 +12,8 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private loginService: LoginService
   ) { }
 
   ngOnInit() {
@@ -21,4 +23,9 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  login() {
+    this.loginService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe(
+      user => console.log(user)
+    );
+  }
 }

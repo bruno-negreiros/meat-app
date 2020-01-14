@@ -1,17 +1,19 @@
-import { NgModule, ModuleWithProviders } from "@angular/core";
-import { InputComponent } from "./input/input.component";
-import { RadioComponent } from "./radio/radio.component";
-import { RatingComponent } from "./rating/rating.component";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { CommonModule } from "@angular/common";
-import { ShoppingCartService } from "app/restaurant-detail/shopping-cart/shopping-cart.service";
-import { RestaurantsService } from "app/restaurants/restaurants.service";
-import { OrderService } from "app/order/order.service";
+import { NgModule, ModuleWithProviders } from '@angular/core';
+import { InputComponent } from './input/input.component';
+import { RadioComponent } from './radio/radio.component';
+import { RatingComponent } from './rating/rating.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { ShoppingCartService } from 'app/restaurant-detail/shopping-cart/shopping-cart.service';
+import { RestaurantsService } from 'app/restaurants/restaurants.service';
+import { OrderService } from 'app/order/order.service';
 import { SnackbarComponent } from './messages/snackbar/snackbar.component';
-import { NotificationService } from "./messages/notification.service";
-import { LoginService } from "app/security/login/login.service";
-import { LoggedInGuard } from "app/security/loggedin.guard";
-import { LeaveOrderGuard } from "app/order/leave-order.guard";
+import { NotificationService } from './messages/notification.service';
+import { LoginService } from 'app/security/login/login.service';
+import { LoggedInGuard } from 'app/security/loggedin.guard';
+import { LeaveOrderGuard } from 'app/order/leave-order.guard';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from 'app/security/auth.intercecptor';
 
 @NgModule({
   declarations: [InputComponent, RadioComponent, RatingComponent, SnackbarComponent],
@@ -27,7 +29,7 @@ import { LeaveOrderGuard } from "app/order/leave-order.guard";
   ]
 })
 export class SharedModule {
-  static forRoot(): ModuleWithProviders{
+  static forRoot(): ModuleWithProviders {
     return {
       ngModule: SharedModule,
       providers: [
@@ -37,7 +39,9 @@ export class SharedModule {
         NotificationService,
         LoginService,
         LoggedInGuard,
-        LeaveOrderGuard]
+        LeaveOrderGuard,
+        {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+      ]
     }
   }
 
